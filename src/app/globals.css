@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+  Blue Ledger MARKETING SITE palette — from the "Claude Design" landing page
+  reference (2026-07), a deliberately different, higher-contrast brand system
+  than the desktop app's UI palette. Recreate these exactly; do not drift.
+*/
+@theme {
+  --font-display: var(--font-archivo-black);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-navy: #16204a;
+  --color-navy-deep: #0e1531;
+  --color-blue: #2f5fe0;
+  --color-blue-press: #244cc0;
+  --color-cream: #f4eee1;
+  --color-cream-dark: #eae2d0;
+  --color-gold: #c8912e;
+  --color-gold-text: #b07c1e;
+  --color-green: #00693e;
+  --color-green-lt: #4caf7d;
+  --color-red: #a6192e;
+}
+
+:root {
+  color: var(--color-navy);
+  background: var(--color-cream);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+@keyframes bl-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Blueprint grid overlay used on navy/blue full-bleed sections. Two variants
+   only because the line color needs to contrast with the section behind it. */
+@utility bg-grid-cream {
+  background-image:
+    linear-gradient(rgba(244, 238, 225, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 238, 225, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility bg-grid-white {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
