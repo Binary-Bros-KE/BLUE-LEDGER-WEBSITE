@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { ContactButton } from "./ContactModal";
 import { Container } from "./Container";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const NAV_LINKS = [
-  { href: "#features", label: "FEATURES" },
-  { href: "#tour", label: "PRODUCT TOUR" },
-  { href: "#offline", label: "OFFLINE-FIRST" },
-  { href: "#pricing", label: "PRICING" },
+  { href: "/#features", label: "FEATURES" },
+  { href: "/features", label: "PRODUCT TOUR" },
+  { href: "/#offline", label: "OFFLINE-FIRST" },
+  { href: "/#pricing", label: "PRICING" },
 ];
 
 export function Nav({ logoSrc }: { logoSrc: string }) {
@@ -18,27 +20,24 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
   return (
     <div className="sticky top-0 z-50 border-b border-navy/15 bg-cream/92 backdrop-blur-sm">
       <Container className="flex items-center justify-between gap-6 px-6 py-3.5 sm:px-8">
-        <a href="#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <PlaceholderImage src={logoSrc} alt="Blue Ledger logo" width={36} height={36} label="Logo" className="size-9" />
           <span className="text-[15px] font-extrabold tracking-[0.14em]">BLUE LEDGER</span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-[13px] font-medium tracking-[0.06em] text-navy transition hover:text-blue"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#cta"
-            className="bg-navy px-5 py-2.5 text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)] transition hover:bg-blue hover:text-white"
-          >
+          <ContactButton className="bg-navy px-5 py-2.5 text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)] transition hover:bg-blue hover:text-white">
             GET STARTED &rarr;
-          </a>
+          </ContactButton>
         </nav>
 
         <button
@@ -56,22 +55,21 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
         <div className="border-t border-navy/15 bg-cream md:hidden">
           <Container className="flex flex-col gap-1 px-6 py-4 sm:px-8">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="py-2.5 text-sm font-semibold tracking-[0.04em] text-navy"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#cta"
+            <ContactButton
               onClick={() => setOpen(false)}
               className="mt-2 bg-navy px-5 py-3 text-center text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)]"
             >
               GET STARTED &rarr;
-            </a>
+            </ContactButton>
           </Container>
         </div>
       )}

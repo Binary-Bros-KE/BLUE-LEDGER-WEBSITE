@@ -1,26 +1,37 @@
+import type { ReactNode } from "react";
+import Link from "next/link";
+import { ContactButton } from "./ContactModal";
 import { Container } from "./Container";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const PRODUCT_LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#tour", label: "Product tour" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "/features", label: "Features" },
+  { href: "/#offline", label: "Offline-first" },
+  { href: "/#pricing", label: "Pricing" },
 ];
 
-const COMPANY_LINKS = [
-  { href: "#cta", label: "Contact" },
-  { href: "#offline", label: "Why offline-first" },
-];
+const COMPANY_LINKS: { href: string; label: string }[] = [];
 
-function FooterColumn({ heading, links }: { heading: string; links: { href: string; label: string }[] }) {
+const FOOTER_LINK_CLASS = "py-0 text-left text-[13px] leading-[2.4] text-cream/70 transition hover:text-white";
+
+function FooterColumn({
+  heading,
+  links,
+  children,
+}: {
+  heading: string;
+  links: { href: string; label: string }[];
+  children?: ReactNode;
+}) {
   return (
     <div className="flex flex-col">
       <span className="text-[11px] font-bold tracking-[0.16em] text-gold">{heading}</span>
       {links.map((link) => (
-        <a key={link.href} href={link.href} className="py-0 text-[13px] leading-[2.4] text-cream/70 transition hover:text-white">
+        <Link key={link.label} href={link.href} className={FOOTER_LINK_CLASS}>
           {link.label}
-        </a>
+        </Link>
       ))}
+      {children}
     </div>
   );
 }
@@ -41,7 +52,9 @@ export function Footer({ logoSrc }: { logoSrc: string }) {
 
         <div className="flex flex-wrap gap-16 text-[13px]">
           <FooterColumn heading="PRODUCT" links={PRODUCT_LINKS} />
-          <FooterColumn heading="COMPANY" links={COMPANY_LINKS} />
+          <FooterColumn heading="COMPANY" links={COMPANY_LINKS}>
+            <ContactButton className={FOOTER_LINK_CLASS}>Contact</ContactButton>
+          </FooterColumn>
         </div>
       </Container>
 

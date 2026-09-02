@@ -41,10 +41,10 @@ export function PlaceholderImage({
       role="img"
       aria-label={alt}
       style={{ aspectRatio: `${width} / ${height}` }}
-      className={`flex w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-line bg-soft/60 text-center ${className}`}
+      className={`flex w-full flex-col items-center justify-center gap-2.5 border-2 border-dashed border-navy/25 bg-cream-dark p-6 text-center ${className}`}
     >
-      <ImageIcon className="size-8 text-muted/60" aria-hidden="true" strokeWidth={1.5} />
-      <p className="max-w-[80%] text-xs font-semibold text-muted">{label}</p>
+      <ImageIcon className="size-8 text-navy/30" aria-hidden="true" strokeWidth={1.5} />
+      <p className="max-w-[85%] text-xs font-semibold tracking-[0.06em] text-navy/55 uppercase">{label}</p>
     </div>
   );
 }

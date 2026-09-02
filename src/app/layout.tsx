@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo_Black, JetBrains_Mono } from "next/font/google";
+import { ContactProvider } from "@/components/ContactModal";
 import "./globals.css";
 
 // TODO: replace with the real production domain once it's registered/deployed.
@@ -67,7 +68,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-cream font-mono text-navy antialiased">{children}</body>
+      <body className="bg-cream font-mono text-navy antialiased">
+        <ContactProvider>{children}</ContactProvider>
+      </body>
     </html>
   );
 }

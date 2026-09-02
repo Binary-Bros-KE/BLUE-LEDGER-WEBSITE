@@ -1,10 +1,16 @@
 import { Play, Sparkles } from "lucide-react";
+import { ContactButton } from "./ContactModal";
 import { Container } from "./Container";
 import { DashedPill } from "./DashedPill";
 import { PlaceholderImage } from "./PlaceholderImage";
-import { StampCircle } from "./StampCircle";
 
-export function Hero({ heroImageSrc, demoHref }: { heroImageSrc: string; demoHref: string }) {
+export function Hero({
+  heroImageSrc,
+  productImageSrc,
+}: {
+  heroImageSrc: string;
+  productImageSrc: string;
+}) {
   return (
     <div id="top" className="relative overflow-hidden bg-navy text-cream">
       <div className="bg-grid-cream pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -32,13 +38,10 @@ export function Hero({ heroImageSrc, demoHref }: { heroImageSrc: string; demoHre
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href={demoHref}
-                className="inline-flex items-center gap-2.5 bg-blue px-8 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press"
-              >
+              <ContactButton className="inline-flex items-center gap-2.5 bg-blue px-8 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
                 <Play className="size-4" aria-hidden="true" />
                 START FREE TRIAL
-              </a>
+              </ContactButton>
               <a
                 href="#tour"
                 className="border-[1.5px] border-cream/50 px-8 py-4 text-sm font-bold tracking-[0.1em] text-cream transition hover:border-cream hover:bg-cream/8"
@@ -53,18 +56,16 @@ export function Hero({ heroImageSrc, demoHref }: { heroImageSrc: string; demoHre
             </div>
           </div>
 
-          <div className="flex flex-1 flex-row items-center justify-center gap-6 pb-14 md:flex-none md:flex-col md:items-center md:gap-6 md:pt-6 md:pb-0">
-            <StampCircle size={130} rotate="rotate-8">
-              OPEN
-              <br />
-              SALE
-            </StampCircle>
-            <div className="hidden h-[120px] w-px border-l-2 border-dashed border-cream/30 md:block" />
-            <div className="border border-cream/25 bg-black/20 px-5 py-4 text-xs leading-relaxed tracking-[0.08em] text-cream/80">
-              <div className="font-bold text-green-lt">&bull; LOCAL MODE</div>
-              <div>SQLite ready</div>
-              <div>cloud sync staged</div>
-            </div>
+          <div className="flex flex-1 items-center justify-center pb-10 md:pt-2 md:pb-0">
+            <PlaceholderImage
+              src={productImageSrc}
+              alt="Blue Ledger POS running on a desktop monitor with a thermal receipt printer, barcode scanner and companion phone app"
+              width={600}
+              height={430}
+              label="Hero product image (POS.png)"
+              priority
+              className="h-auto w-full max-w-[420px] md:max-w-[560px]"
+            />
           </div>
         </div>
       </Container>
