@@ -54,12 +54,19 @@ type Channel = {
 
 const ICON_CLASS = "size-[18px]";
 
+// Prefilled first message for the WhatsApp / email channels.
+const PREFILL_MESSAGE = "Hi, I'm interested in Blue Ledger POS.";
+const PREFILL_SUBJECT = "Blue Ledger POS enquiry";
+const waHref = (phone: string) => `https://wa.me/${phone}?text=${encodeURIComponent(PREFILL_MESSAGE)}`;
+const mailtoHref = (email: string) =>
+  `mailto:${email}?subject=${encodeURIComponent(PREFILL_SUBJECT)}&body=${encodeURIComponent(PREFILL_MESSAGE)}`;
+
 const CHANNELS: Channel[] = [
   {
     key: "wa-sales",
     label: "WhatsApp",
     sub: "Sales Consultant · 0791 880 412",
-    href: "https://wa.me/254791880412",
+    href: waHref("254791880412"),
     color: "#25D366",
     icon: <WhatsAppIcon className={ICON_CLASS} />,
   },
@@ -67,7 +74,7 @@ const CHANNELS: Channel[] = [
     key: "wa-support",
     label: "WhatsApp",
     sub: "BL Support · 0742 593 840",
-    href: "https://wa.me/254742593840",
+    href: waHref("254742593840"),
     color: "#25D366",
     icon: <WhatsAppIcon className={ICON_CLASS} />,
   },
@@ -75,7 +82,7 @@ const CHANNELS: Channel[] = [
     key: "email",
     label: "Email",
     sub: "info@blueledgerpos.com",
-    href: "mailto:info@blueledgerpos.com",
+    href: mailtoHref("info@blueledgerpos.com"),
     color: "#16204a",
     icon: <Mail className={ICON_CLASS} aria-hidden="true" />,
   },
