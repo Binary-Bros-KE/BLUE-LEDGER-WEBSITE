@@ -118,7 +118,7 @@ export function ProductTour({
             <h2 className="mt-3 font-display text-[clamp(32px,5vw,56px)] leading-[1.05]">Take the counter view.</h2>
             <p className="mt-5 text-[15px] leading-[1.8] text-navy/75">
               A quick look at three of the screens you&apos;ll live in. Invoices, quotations, delivery notes,
-              approvals, goods received, payroll, roles and data migration are all in the box too.
+              approvals, goods received, payroll, roles, the mobile app and data migration are all in the box too.
             </p>
           </div>
 

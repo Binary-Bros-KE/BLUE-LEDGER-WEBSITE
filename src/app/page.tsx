@@ -4,6 +4,7 @@ import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { MarqueeStrip } from "@/components/MarqueeStrip";
+import { MobileApp } from "@/components/MobileApp";
 import { Nav } from "@/components/Nav";
 import { OfflineManifesto } from "@/components/OfflineManifesto";
 import { Pricing } from "@/components/Pricing";
@@ -13,6 +14,7 @@ import {
   HERO_PRODUCT_IMAGE_SRC,
   INVENTORY_IMAGE_SRC,
   LOGO_SRC,
+  MOBILE_APP_IMAGE_SRC,
   RECEIPTS_IMAGE_SRC,
   REPORTS_IMAGE_SRC,
 } from "@/lib/site";
@@ -33,6 +35,7 @@ const STRUCTURED_DATA = {
     "Receipts, returns, and void approvals",
     "Team PINs and role-based permissions",
     "Sales, expense, and payroll reports",
+    "Mobile app: remote shop visibility and mobile POS",
   ],
 };
 
@@ -53,6 +56,7 @@ export default function Home() {
           inventoryImageSrc={INVENTORY_IMAGE_SRC}
           reportsImageSrc={REPORTS_IMAGE_SRC}
         />
+        <MobileApp imageSrc={MOBILE_APP_IMAGE_SRC} />
         <OfflineManifesto />
         <Pricing />
         <Faq />

@@ -10,3 +10,4 @@ export const HERO_IMAGE_SRC = "/screenshots/dashboard.png"; // Command Center da
 export const RECEIPTS_IMAGE_SRC = "/screenshots/receipts.png"; // Receipts screen screenshot
 export const INVENTORY_IMAGE_SRC = "/screenshots/inventory.png"; // Inventory / main store allocation screenshot
 export const REPORTS_IMAGE_SRC = "/screenshots/sales_report.png"; // Sales report / analytics screenshot
+export const MOBILE_APP_IMAGE_SRC = "/mobile.png"; // portrait phone render

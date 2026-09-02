@@ -88,11 +88,11 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
     title: "Blue Ledger mobile app — your shop in your pocket",
     tagline: "Watch every branch live, and sell from a phone exactly like the desktop till.",
     image: {
-      src: "",
+      src: "/mobile.png",
       alt: "Blue Ledger mobile app — live shop dashboard and mobile point of sale running on a phone",
-      label: "Mobile app screen (mobile-app.png) — portrait",
-      width: 260,
-      height: 460,
+      label: "Mobile app screen (mobile.png) — portrait",
+      width: 365,
+      height: 684,
     },
     points: [
       {
@@ -118,7 +118,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
     title: "Invoices, quotations and delivery notes — 100% paperless",
     tagline: "Create, share and track credit sales end to end, sent by WhatsApp or email.",
     image: {
-      src: "",
+      src: "/screenshots/invoices.png",
       alt: "Blue Ledger invoices and quotations screen — create, share and track credit sales",
       label: "Invoices & quotations screen (invoices.png)",
     },
@@ -167,14 +167,14 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "goods-received",
-    num: "04",
+    num: "05",
     tone: "gold-text",
     icon: PackageCheck,
     kicker: "GOODS RECEIVED",
     title: "Record goods received and keep every supplier receipt",
     tagline: "Account for every unit that enters the main store or a selling branch.",
     image: {
-      src: "",
+      src: "/screenshots/goods-received.png",
       alt: "Blue Ledger goods received screen — logging a supplier delivery into the main store",
       label: "Goods received screen (goods-received.png)",
     },
@@ -195,16 +195,16 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "customers-suppliers",
-    num: "05",
+    num: "06",
     tone: "green",
     icon: Users,
     kicker: "CUSTOMERS & SUPPLIERS",
     title: "Customer records and supplier tracking",
     tagline: "A running history of who buys from you and who you buy from.",
     image: {
-      src: "",
+      src: "/screenshots/customer_management.png",
       alt: "Blue Ledger customer records — purchase history, statements and outstanding balances",
-      label: "Customer records screen (customers.png)",
+      label: "Customer records screen (customer_management.png)",
     },
     points: [
       {
@@ -219,14 +219,14 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "requests-approvals",
-    num: "06",
+    num: "07",
     tone: "blue",
     icon: ClipboardCheck,
     kicker: "REQUESTS & APPROVALS",
     title: "Built-in request and approval workflow",
     tagline: "Cashiers raise sensitive actions; a manager signs them off.",
     image: {
-      src: "",
+      src: "/screenshots/approvals.png",
       alt: "Blue Ledger approvals screen — a cashier's return request awaiting manager sign-off",
       label: "Requests & approvals screen (approvals.png)",
     },
@@ -243,16 +243,16 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "roles-permissions",
-    num: "07",
+    num: "08",
     tone: "gold-text",
     icon: KeyRound,
     kicker: "ROLES & PERMISSIONS",
     title: "Role-based permissions for every employee",
     tagline: "Decide exactly what each person on the team can see and do.",
     image: {
-      src: "",
+      src: "/screenshots/role_management.png",
       alt: "Blue Ledger roles and permissions — choosing what a cashier role can access",
-      label: "Roles & permissions screen (roles.png)",
+      label: "Roles & permissions screen (role_management.png)",
     },
     points: [
       {
@@ -267,14 +267,14 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "expenses-salaries",
-    num: "08",
+    num: "09",
     tone: "green",
     icon: Wallet,
     kicker: "EXPENSES & SALARIES",
     title: "Expense tracking and salary management",
     tagline: "Record what goes out of the business as carefully as what comes in.",
     image: {
-      src: "",
+      src: "/screenshots/expenses.png",
       alt: "Blue Ledger expenses and salary management screen",
       label: "Expenses & salaries screen (expenses.png)",
     },
@@ -291,7 +291,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "reports-analytics",
-    num: "09",
+    num: "10",
     tone: "blue",
     icon: BarChart3,
     kicker: "REPORTS & ANALYTICS",
@@ -327,16 +327,16 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "multi-branch",
-    num: "10",
+    num: "11",
     tone: "gold-text",
     icon: Building2,
     kicker: "MULTI-BRANCH",
     title: "Multi-branch support with independent branch profiles",
     tagline: "Run every branch on its own details, branding and opening hours.",
     image: {
-      src: "",
+      src: "/screenshots/multi_branch.png",
       alt: "Blue Ledger branch settings — independent branch profiles and working hours",
-      label: "Branch settings screen (branches.png)",
+      label: "Branch settings screen (multi_branch.png)",
     },
     points: [
       {
@@ -351,16 +351,16 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "data-migration",
-    num: "11",
+    num: "12",
     tone: "green",
     icon: FolderInput,
     kicker: "DATA MIGRATION",
     title: "Data migration from your old POS",
     tagline: "Bring your products, customers and suppliers across from day one.",
     image: {
-      src: "",
+      src: "/screenshots/data_import.png",
       alt: "Blue Ledger data import — bringing products, customers and suppliers in from CSV or Excel",
-      label: "Data import screen (import.png)",
+      label: "Data import screen (data_import.png)",
     },
     points: [
       {

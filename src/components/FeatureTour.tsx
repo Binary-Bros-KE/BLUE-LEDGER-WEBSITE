@@ -12,6 +12,10 @@ function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) 
     : "shadow-[10px_10px_0_rgba(22,32,74,0.10)]";
   const rotate = flip ? "rotate-2" : "-rotate-2";
 
+  const imgWidth = group.image.width ?? 1366;
+  const imgHeight = group.image.height ?? 768;
+  const portrait = imgHeight > imgWidth;
+
   return (
     <section
       id={group.id}
@@ -28,14 +32,18 @@ function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) 
         <h3 className="mt-5 font-display text-[26px] leading-[1.15] sm:text-[32px]">{group.title}</h3>
         <p className="mt-4 text-[15px] leading-[1.8] text-navy/75">{group.tagline}</p>
 
-        <div className={`mt-6 w-full max-w-[360px] border border-navy/20 bg-white ${shadow}`}>
+        <div
+          className={`mt-6 w-full border border-navy/20 bg-white ${shadow} ${
+            portrait ? "max-w-[240px]" : "max-w-[360px]"
+          }`}
+        >
           <PlaceholderImage
             src={group.image.src}
             alt={group.image.alt}
-            width={360}
-            height={225}
+            width={imgWidth}
+            height={imgHeight}
             label={group.image.label}
-            className="w-full"
+            className="h-auto w-full"
           />
         </div>
       </div>
