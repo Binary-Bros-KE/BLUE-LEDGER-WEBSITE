@@ -7,6 +7,7 @@ import {
   KeyRound,
   PackageCheck,
   Receipt,
+  Smartphone,
   Users,
   Wallet,
   Warehouse,
@@ -21,6 +22,9 @@ export type FeatureImage = {
   alt: string;
   /** Shown inside the placeholder box until the real screenshot is dropped in. */
   label: string;
+  /** Intrinsic size — drives aspect ratio. Defaults to a 360×225 landscape frame. */
+  width?: number;
+  height?: number;
 };
 
 export type FeatureGroup = {
@@ -76,8 +80,38 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
     ],
   },
   {
-    id: "invoices-quotations",
+    id: "mobile-app",
     num: "02",
+    tone: "blue",
+    icon: Smartphone,
+    kicker: "MOBILE APP",
+    title: "Blue Ledger mobile app — your shop in your pocket",
+    tagline: "Watch every branch live, and sell from a phone exactly like the desktop till.",
+    image: {
+      src: "",
+      alt: "Blue Ledger mobile app — live shop dashboard and mobile point of sale running on a phone",
+      label: "Mobile app screen (mobile-app.png) — portrait",
+      width: 260,
+      height: 460,
+    },
+    points: [
+      {
+        title: "See your shop from anywhere",
+        body: "Live sales, stock, cash and pending approvals from every branch, on your phone — whether you are behind the counter or three towns away.",
+      },
+      {
+        title: "A point of sale in your pocket",
+        body: "Staff walk the shop floor with the mobile till: check live stock on any product, then ring up the sale on the spot without going back to a computer.",
+      },
+      {
+        title: "Full documents, not a cut-down app",
+        body: "Create sales, invoices and quotations from the phone exactly like the desktop POS — same prices, same approvals, same cloud sync.",
+      },
+    ],
+  },
+  {
+    id: "invoices-quotations",
+    num: "03",
     tone: "green",
     icon: FileText,
     kicker: "INVOICES & QUOTATIONS",
@@ -105,7 +139,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
   },
   {
     id: "inventory",
-    num: "03",
+    num: "04",
     tone: "blue",
     icon: Warehouse,
     kicker: "INVENTORY CONTROL",
