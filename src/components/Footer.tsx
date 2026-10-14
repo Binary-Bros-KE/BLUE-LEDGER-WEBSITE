@@ -7,6 +7,7 @@ import { Container } from "./Container";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const PRODUCT_LINKS = [
+  { href: "/guides", label: "Practical guides" },
   { href: "/features", label: "Product tour" },
   { href: "/offline-pos", label: "Offline POS" },
   { href: "/inventory-management", label: "Inventory management" },

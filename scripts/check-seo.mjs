@@ -13,6 +13,8 @@ const pages = [
   ["/mobile-pos", "mobile-pos", "Mobile POS App for Shops in Kenya"],
   ["/about", "about", "About Blue Ledger POS"],
   ["/contact", "contact", "Contact Blue Ledger Sales"],
+  ["/guides", "guides", "Practical POS Guides"],
+  ["/guides/reconcile-stock-across-branches", "guides/reconcile-stock-across-branches", "How to Reconcile Stock Across Branches"],
 ];
 const readBuild = file => readFileSync(fileURLToPath(new URL(`../.next/server/app/${file}`, import.meta.url)), "utf8");
 const normalized = value => new URL(value).href;
@@ -35,25 +37,61 @@ for (const [route, file, topic] of pages) {
   assert.ok(!descriptions.has(description), `${route}: duplicate description`);
   titles.add(title);
   descriptions.add(description);
-  for (const [destination] of pages.slice(2, 7)) {
+  for (const [destination] of [...pages.slice(2, 7), pages[9]]) {
     assert.match(html, new RegExp(`<a\\b[^>]*href="${destination}"`), `${route}: missing crawlable link to ${destination}`);
   }
-  if (route !== "/" && route !== "/features") {
-    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
-    const graph = jsonLd.flatMap(data => data["@graph"] ?? [data]);
-    const page = graph.find(item => ["WebPage", "AboutPage", "ContactPage"].includes(item["@type"]));
+  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
+  const graph = jsonLd.flatMap(data => data["@graph"] ?? [data]);
+  const organization = graph.filter(item => item["@type"] === "Organization");
+  assert.equal(organization.length, 1, `${route}: expected one operator entity`);
+  assert.equal(organization[0].name, "Trylist Solutions Ltd");
+  assert.equal(organization[0].url, "https://trylistsolutions.co.ke/");
+  assert.equal(organization[0]["@id"], `${site}/#organization`);
+  assert.equal(organization[0].contactPoint.length, 2);
+  const website = graph.find(item => item["@type"] === "WebSite");
+  assert.equal(website?.publisher?.["@id"], organization[0]["@id"]);
+  const page = graph.find(item => ["WebPage", "AboutPage", "ContactPage", "CollectionPage"].includes(item["@type"]));
+  assert.equal(page?.url, `${site}${route}`, `${route}: incorrect page schema URL`);
+  assert.equal(page?.isPartOf?.["@id"], website["@id"]);
+  assert.equal(page?.publisher?.["@id"], organization[0]["@id"]);
+  const ids = graph.map(item => item["@id"]).filter(Boolean);
+  assert.equal(new Set(ids).size, ids.length, `${route}: duplicate entity definitions`);
+  if (route !== "/") {
     const crumbs = graph.find(item => item["@type"] === "BreadcrumbList");
-    assert.equal(page?.url, `${site}${route}`, `${route}: incorrect WebPage URL`);
-    assert.equal(crumbs?.itemListElement?.length, 2, `${route}: missing breadcrumb hierarchy`);
-    assert.equal(crumbs.itemListElement[1].item, `${site}${route}`);
-    if (!["/about", "/contact"].includes(route)) assert.equal([...html.matchAll(/<summary(?:\s|>)/g)].length, 4, `${route}: expected topic FAQs`);
-    if (!["/about", "/contact"].includes(route)) assert.match(html, /BOOK AN OFFLINE DEMO|SEE STOCK MANAGEMENT|BOOK A BRANCH WALKTHROUGH|REQUEST A QUOTE|SEE THE MOBILE APP/);
+    const count = route.startsWith("/guides/") ? 3 : 2;
+    assert.equal(crumbs?.itemListElement?.length, count, `${route}: incorrect breadcrumb hierarchy`);
+    assert.equal(page.breadcrumb["@id"], crumbs["@id"]);
+    assert.equal(crumbs.itemListElement.at(-1).item, `${site}${route}`);
+    crumbs.itemListElement.forEach((item, index) => {
+      assert.equal(item.position, index + 1);
+      assert.ok(pages.some(([path]) => normalized(`${site}${path}`) === normalized(item.item)), `${route}: breadcrumb destination is not a published page`);
+    });
   }
-  console.log(`PASS ${route}: unique metadata, canonical, main heading and crawlable topic links`);
+  if (pages.slice(2, 7).some(([path]) => path === route)) {
+    assert.equal([...html.matchAll(/<summary(?:\s|>)/g)].length, 4, `${route}: expected topic FAQs`);
+    assert.match(html, /BOOK AN OFFLINE DEMO|SEE STOCK MANAGEMENT|BOOK A BRANCH WALKTHROUGH|REQUEST A QUOTE|SEE THE MOBILE APP/);
+  }
+  if (route === "/") {
+    const app = graph.find(item => item["@type"] === "SoftwareApplication");
+    assert.equal(app?.url, `${site}/`);
+    assert.equal(app?.publisher?.["@id"], organization[0]["@id"]);
+    assert.equal(page.mainEntity["@id"], app["@id"]);
+    for (const key of ["offers", "aggregateRating", "review", "softwareVersion", "downloadUrl"]) assert.ok(!(key in app), `Unverified software property: ${key}`);
+    assert.equal(app.operatingSystem, "Windows");
+    assert.ok(app.screenshot.startsWith(`${site}/screenshots/`));
+  }
+  if (route.startsWith("/guides/")) {
+    const article = graph.find(item => item["@type"] === "Article");
+    assert.equal(article?.url, `${site}${route}`);
+    assert.equal(article?.mainEntityOfPage?.["@id"], page["@id"]);
+    assert.equal(article?.publisher?.["@id"], organization[0]["@id"]);
+    assert.match(html, /This is an illustrative example/);
+    assert.match(html, /<time dateTime="2026-10-14"/);
+  }
+  console.log(`PASS ${route}: metadata, canonical, heading, links, entity references and breadcrumbs`);
 }
-
 const sitemap = readBuild("sitemap.xml.body");
 const actual = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => normalized(match[1])).sort();
 const expected = pages.map(([route]) => normalized(`${site}${route}`)).sort();
-assert.deepEqual(actual, expected, "Sitemap must contain exactly the nine canonical public URLs");
-console.log("PASS sitemap: nine canonical public URLs");
+assert.deepEqual(actual, expected, "Sitemap must contain exactly the eleven canonical public URLs");
+console.log("PASS sitemap: eleven canonical public URLs");

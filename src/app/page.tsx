@@ -1,3 +1,4 @@
+import { APPLICATION_ID, ORGANIZATION_ID, WEBSITE_ID } from "@/lib/structuredData";
 import { CustomerFeedback } from "@/components/CustomerFeedback";
 import type { Metadata } from "next";
 import { Faq } from "@/components/Faq";
@@ -20,6 +21,7 @@ import {
   MOBILE_APP_IMAGE_SRC,
   RECEIPTS_IMAGE_SRC,
   REPORTS_IMAGE_SRC,
+  SITE_URL,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,6 +31,13 @@ export const metadata: Metadata = {
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": APPLICATION_ID,
+  url: `${SITE_URL}/`,
+  publisher: { "@id": ORGANIZATION_ID },
+  creator: { "@id": ORGANIZATION_ID },
+  image: `${SITE_URL}${LOGO_SRC}`,
+  screenshot: `${SITE_URL}${HERO_IMAGE_SRC}`,
+  mainEntityOfPage: { "@id": `${SITE_URL}/#webpage` },
   name: "Blue Ledger",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Windows",
@@ -51,7 +60,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [STRUCTURED_DATA, { "@type": "WebPage", "@id": `${SITE_URL}/#webpage`, url: `${SITE_URL}/`, name: "Blue Ledger POS System in Kenya", isPartOf: { "@id": WEBSITE_ID }, mainEntity: { "@id": APPLICATION_ID }, publisher: { "@id": ORGANIZATION_ID } }] }).replace(/</g, "\\u003c") }}
       />
       <Nav logoSrc={LOGO_SRC} />
       <main>

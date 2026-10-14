@@ -1,3 +1,4 @@
+import { SITE_SCHEMA, jsonLd } from "@/lib/structuredData";
 import type { Metadata } from "next";
 import { Archivo_Black, JetBrains_Mono } from "next/font/google";
 import { ContactProvider } from "@/components/ContactModal";
@@ -70,6 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-cream font-mono text-navy antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(SITE_SCHEMA) }} />
         <ContactProvider>{children}</ContactProvider>
       </body>
     </html>

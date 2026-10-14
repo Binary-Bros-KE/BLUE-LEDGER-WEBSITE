@@ -1,3 +1,4 @@
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/structuredData";
 import Link from "next/link";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { ContactButton } from "@/components/ContactModal";
@@ -23,6 +24,8 @@ export function SolutionPage({ page }: { page: SolutionPageData }) {
         name: page.title,
         description: page.description,
         inLanguage: "en",
+        isPartOf: { "@id": WEBSITE_ID },
+        publisher: { "@id": ORGANIZATION_ID },
         breadcrumb: { "@id": `${url}#breadcrumb` },
       },
       {
@@ -169,6 +172,7 @@ export function SolutionPage({ page }: { page: SolutionPageData }) {
           </Container>
         </section>
       </main>
+      {["inventory-management", "multi-branch-pos"].includes(page.slug) && <aside className="bg-cream-dark px-6 py-10 text-center text-sm leading-relaxed"><Link href="/guides/reconcile-stock-across-branches" prefetch={false} className="font-bold text-blue underline underline-offset-4">Read the stock reconciliation guide: counts, transfers and a worked example &rarr;</Link></aside>}
       <Footer logoSrc={LOGO_SRC} />
     </>
   );

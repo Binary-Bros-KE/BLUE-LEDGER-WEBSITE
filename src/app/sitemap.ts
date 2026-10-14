@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/features` },
     { url: `${SITE_URL}/about` },
     { url: `${SITE_URL}/contact` },
+    { url: `${SITE_URL}/guides` },
+    { url: `${SITE_URL}/guides/reconcile-stock-across-branches`, lastModified: "2026-10-14" },
     ...Object.values(SOLUTIONS).map(page => ({ url: `${SITE_URL}/${page.slug}` })),
   ];
 }

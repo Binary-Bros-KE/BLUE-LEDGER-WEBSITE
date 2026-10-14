@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/structuredData";
 import type { Metadata } from "next";
 import { ShieldCheck } from "lucide-react";
 import { Container } from "@/components/Container";
@@ -9,7 +11,7 @@ import { MarqueeStrip } from "@/components/MarqueeStrip";
 import { Nav } from "@/components/Nav";
 import { Pricing } from "@/components/Pricing";
 import { FEATURE_GROUPS } from "@/lib/features";
-import { LOGO_SRC } from "@/lib/site";
+import { LOGO_SRC, SITE_URL } from "@/lib/site";
 
 const PAGE_TITLE = "POS Features & Product Tour";
 const PAGE_DESCRIPTION = "Explore Blue Ledger checkout, stock transfers, staff permissions, receipts and reports for Kenyan retail and wholesale businesses. Book a product walkthrough.";
@@ -48,7 +50,7 @@ export default function FeaturesPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FEATURES_STRUCTURED_DATA) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [FEATURES_STRUCTURED_DATA, { "@type": "WebPage", "@id": `${SITE_URL}/features#webpage`, url: `${SITE_URL}/features`, name: PAGE_TITLE, isPartOf: { "@id": WEBSITE_ID }, publisher: { "@id": ORGANIZATION_ID }, breadcrumb: { "@id": `${SITE_URL}/features#breadcrumb` } }, { "@type": "BreadcrumbList", "@id": `${SITE_URL}/features#breadcrumb`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` }, { "@type": "ListItem", position: 2, name: "Product tour", item: `${SITE_URL}/features` }] }] }).replace(/</g, "\\u003c") }}
       />
       <Nav logoSrc={LOGO_SRC} />
       <main>
@@ -56,7 +58,7 @@ export default function FeaturesPage() {
         <div className="relative overflow-hidden bg-navy px-6 py-20 text-cream sm:px-8 md:py-24">
           <div className="bg-grid-cream pointer-events-none absolute inset-0" aria-hidden="true" />
           <Container className="relative">
-            <DashedPill tone="gold">FULL PRODUCT TOUR</DashedPill>
+            <nav aria-label="Breadcrumb" className="mb-8 text-sm"><ol className="flex flex-wrap gap-3"><li><Link href="/" prefetch={false} className="underline underline-offset-4">Home</Link></li><li aria-hidden="true">/</li><li aria-current="page">Product tour</li></ol></nav><DashedPill tone="gold">FULL PRODUCT TOUR</DashedPill>
             <h1 className="mt-6 max-w-[15ch] font-display text-[clamp(38px,6.5vw,76px)] leading-[0.98]">
               Every feature, one system.
             </h1>
