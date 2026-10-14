@@ -28,7 +28,7 @@ function FooterColumn({
     <div className="flex flex-col">
       <span className="text-[11px] font-bold tracking-[0.16em] text-gold">{heading}</span>
       {links.map((link) => (
-        <Link key={link.label} href={link.href} className={FOOTER_LINK_CLASS}>
+        <Link key={link.label} href={link.href} prefetch={link.href.includes("#") ? false : undefined} className={FOOTER_LINK_CLASS}>
           {link.label}
         </Link>
       ))}

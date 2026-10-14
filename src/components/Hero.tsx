@@ -60,10 +60,11 @@ export function Hero({
             <PlaceholderImage
               src={productImageSrc}
               alt="Blue Ledger POS running on a desktop monitor with a thermal receipt printer, barcode scanner and companion phone app"
-              width={600}
-              height={430}
+              width={1536}
+              height={1024}
               label="Hero product image (POS.png)"
-              priority
+              sizes="(min-width: 1200px) 544px, (min-width: 768px) calc((100vw - 112px) / 2), (min-width: 468px) 420px, calc(100vw - 48px)"
+              loading="eager"
               className="h-auto w-full max-w-[420px] md:max-w-[560px]"
             />
           </div>
@@ -82,11 +83,11 @@ export function Hero({
           <PlaceholderImage
             src={heroImageSrc}
             alt="Blue Ledger POS dashboard — Command Center with today's sales, checkout and cloud sync status"
-            width={1100}
-            height={620}
+            width={1357}
+            height={768}
             label="Dashboard screenshot (dashboard.png)"
-            priority
-            className="w-full"
+            sizes="(min-width: 1100px) 1034px, (min-width: 640px) calc(100vw - 66px), calc(100vw - 50px)"
+            className="h-auto w-full"
           />
         </div>
       </Container>

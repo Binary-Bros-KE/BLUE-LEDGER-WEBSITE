@@ -16,6 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500", "700", "800"],
+  // Match monospace character widths while the web font loads.
+  adjustFontFallback: false,
+  fallback: ["Courier New", "monospace"],
   display: "swap",
 });
 

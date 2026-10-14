@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image, { type ImageProps } from "next/image";
+import { IMAGE_ASSETS } from "@/lib/imageAssets";
 import { ImageIcon } from "lucide-react";
 
 /**
@@ -13,7 +14,9 @@ export function PlaceholderImage({
   height,
   label,
   className = "",
-  priority = false,
+  sizes,
+  loading,
+  fetchPriority,
 }: {
   src: string;
   alt: string;
@@ -21,16 +24,21 @@ export function PlaceholderImage({
   height: number;
   label: string;
   className?: string;
-  priority?: boolean;
+  sizes?: string;
+  loading?: ImageProps["loading"];
+  fetchPriority?: ImageProps["fetchPriority"];
 }) {
   if (src) {
+    const asset = IMAGE_ASSETS[src];
     return (
       <Image
-        src={src}
+        src={asset ?? src}
         alt={alt}
-        width={width}
-        height={height}
-        priority={priority}
+        width={asset?.width ?? width}
+        height={asset?.height ?? height}
+        sizes={sizes ?? `${width}px`}
+        loading={loading}
+        fetchPriority={fetchPriority}
         className={className}
       />
     );

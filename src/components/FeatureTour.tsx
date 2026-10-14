@@ -43,6 +43,7 @@ function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) 
             width={imgWidth}
             height={imgHeight}
             label={group.image.label}
+            sizes={portrait ? "240px" : "(min-width: 410px) 360px, calc(100vw - 50px)"}
             className="h-auto w-full"
           />
         </div>

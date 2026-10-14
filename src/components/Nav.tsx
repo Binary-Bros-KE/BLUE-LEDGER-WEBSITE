@@ -30,6 +30,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
             <Link
               key={link.href}
               href={link.href}
+              prefetch={link.href.includes("#") ? false : undefined}
               className="text-[13px] font-medium tracking-[0.06em] text-navy transition hover:text-blue"
             >
               {link.label}
@@ -58,6 +59,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={link.href.includes("#") ? false : undefined}
                 onClick={() => setOpen(false)}
                 className="py-2.5 text-sm font-semibold tracking-[0.04em] text-navy"
               >

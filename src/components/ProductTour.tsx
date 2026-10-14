@@ -84,10 +84,11 @@ function TourRow({ row }: { row: Row }) {
         <PlaceholderImage
           src={row.imageSrc}
           alt={row.imageAlt}
-          width={520}
-          height={400}
+          width={1366}
+          height={768}
           label={row.imageLabel}
-          className="w-full"
+          sizes="(min-width: 1024px) 520px, (min-width: 640px) calc(100vw - 66px), calc(100vw - 50px)"
+          className="h-auto w-full"
         />
       </div>
     </div>

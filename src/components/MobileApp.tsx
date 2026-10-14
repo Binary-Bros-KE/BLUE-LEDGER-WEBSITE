@@ -28,9 +28,10 @@ export function MobileApp({ imageSrc }: { imageSrc: string }) {
             <PlaceholderImage
               src={imageSrc}
               alt="Blue Ledger mobile app — live shop dashboard and mobile point of sale running on a phone"
-              width={365}
-              height={684}
+              width={916}
+              height={1717}
               label="Mobile app screenshot (mobile.png) — portrait"
+              sizes="260px"
               className="h-auto w-full"
             />
           </div>
