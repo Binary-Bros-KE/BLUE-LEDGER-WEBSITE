@@ -85,7 +85,7 @@ export function Pricing({ showDetailsLink = true }: { showDetailsLink?: boolean 
             <div className="text-[13px] font-bold tracking-[0.14em] text-green">DUKA</div>
             <PriceLine tone="light" />
             <FeatureList items={DUKA_FEATURES} tone="light" />
-            <ContactButton className="mt-auto border-[1.5px] border-navy px-4 py-3.5 text-center text-[13px] font-bold tracking-[0.1em] transition hover:bg-navy hover:text-cream">
+            <ContactButton intent="quote" className="mt-auto border-[1.5px] border-navy px-4 py-3.5 text-center text-[13px] font-bold tracking-[0.1em] transition hover:bg-navy hover:text-cream">
               CONTACT US
             </ContactButton>
           </div>
@@ -98,7 +98,7 @@ export function Pricing({ showDetailsLink = true }: { showDetailsLink?: boolean 
             <div className="text-[13px] font-bold tracking-[0.14em] text-gold">BIASHARA</div>
             <PriceLine tone="dark" />
             <FeatureList items={BIASHARA_FEATURES} tone="dark" />
-            <ContactButton className="mt-auto bg-blue px-4 py-3.5 text-center text-[13px] font-extrabold tracking-[0.1em] text-white transition hover:bg-blue-press">
+            <ContactButton intent="quote" className="mt-auto bg-blue px-4 py-3.5 text-center text-[13px] font-extrabold tracking-[0.1em] text-white transition hover:bg-blue-press">
               CONTACT SALES
             </ContactButton>
           </div>
@@ -108,7 +108,7 @@ export function Pricing({ showDetailsLink = true }: { showDetailsLink?: boolean 
             <div className="text-[13px] font-bold tracking-[0.14em] text-green">ENTERPRISE</div>
             <PriceLine tone="light" />
             <FeatureList items={ENTERPRISE_FEATURES} tone="light" />
-            <ContactButton className="mt-auto border-[1.5px] border-navy px-4 py-3.5 text-center text-[13px] font-bold tracking-[0.1em] transition hover:bg-navy hover:text-cream">
+            <ContactButton intent="quote" className="mt-auto border-[1.5px] border-navy px-4 py-3.5 text-center text-[13px] font-bold tracking-[0.1em] transition hover:bg-navy hover:text-cream">
               TALK TO US
             </ContactButton>
           </div>

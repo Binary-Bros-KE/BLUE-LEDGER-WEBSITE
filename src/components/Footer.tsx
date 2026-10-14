@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, SALES_PHONE, SALES_PHONE_DISPLAY, SUPPORT_PHONE, SUPPORT_PHONE_DISPLAY, whatsappHref } from "@/lib/contact";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ContactButton } from "./ContactModal";
@@ -14,7 +15,11 @@ const PRODUCT_LINKS = [
   { href: "/pricing", label: "Pricing & setup" },
 ];
 
-const COMPANY_LINKS: { href: string; label: string }[] = [];
+const COMPANY_LINKS = [
+  { href: "/about", label: "About Blue Ledger" },
+  { href: "/contact", label: "Contact sales & support" },
+  { href: "/contact#privacy", label: "Data & privacy" },
+];
 
 const FOOTER_LINK_CLASS = "py-0 text-left text-[13px] leading-[2.4] text-cream/70 transition hover:text-white";
 
@@ -51,7 +56,10 @@ export function Footer({ logoSrc }: { logoSrc: string }) {
             <PlaceholderImage src={logoSrc} alt="Blue Ledger" width={32} height={32} label="Logo" className="size-8" />
             <span className="text-sm font-extrabold tracking-[0.14em] text-cream">BLUE LEDGER</span>
           </div>
-          <div className="text-xs tracking-[0.08em]">Track. Sell. Grow.</div>
+          <div className="text-xs tracking-[0.08em]">Track. Sell. Grow.</div><p className="max-w-[280px] text-xs leading-relaxed">Developed and managed by <a href="https://trylistsolutions.co.ke" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Trylist Solutions Ltd</a>.</p>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="break-all text-sm underline underline-offset-4">{CONTACT_EMAIL}</a>
+          <a href={whatsappHref(SALES_PHONE)} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4">Sales: {SALES_PHONE_DISPLAY}</a>
+          <a href={whatsappHref(SUPPORT_PHONE,"support")} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4">Support: {SUPPORT_PHONE_DISPLAY}</a>
         </div>
 
         <div className="flex flex-wrap gap-16 text-[13px]">

@@ -11,6 +11,8 @@ const pages = [
   ["/multi-branch-pos", "multi-branch-pos", "Multi-Branch POS System in Kenya"],
   ["/pricing", "pricing", "POS Software Pricing in Kenya"],
   ["/mobile-pos", "mobile-pos", "Mobile POS App for Shops in Kenya"],
+  ["/about", "about", "About Blue Ledger POS"],
+  ["/contact", "contact", "Contact Blue Ledger Sales"],
 ];
 const readBuild = file => readFileSync(fileURLToPath(new URL(`../.next/server/app/${file}`, import.meta.url)), "utf8");
 const normalized = value => new URL(value).href;
@@ -33,19 +35,19 @@ for (const [route, file, topic] of pages) {
   assert.ok(!descriptions.has(description), `${route}: duplicate description`);
   titles.add(title);
   descriptions.add(description);
-  for (const [destination] of pages.slice(2)) {
+  for (const [destination] of pages.slice(2, 7)) {
     assert.match(html, new RegExp(`<a\\b[^>]*href="${destination}"`), `${route}: missing crawlable link to ${destination}`);
   }
   if (route !== "/" && route !== "/features") {
     const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
     const graph = jsonLd.flatMap(data => data["@graph"] ?? [data]);
-    const page = graph.find(item => item["@type"] === "WebPage");
+    const page = graph.find(item => ["WebPage", "AboutPage", "ContactPage"].includes(item["@type"]));
     const crumbs = graph.find(item => item["@type"] === "BreadcrumbList");
     assert.equal(page?.url, `${site}${route}`, `${route}: incorrect WebPage URL`);
     assert.equal(crumbs?.itemListElement?.length, 2, `${route}: missing breadcrumb hierarchy`);
     assert.equal(crumbs.itemListElement[1].item, `${site}${route}`);
-    assert.equal([...html.matchAll(/<summary(?:\s|>)/g)].length, 4, `${route}: expected topic FAQs`);
-    assert.match(html, /role="dialog"|BOOK AN OFFLINE DEMO|SEE STOCK MANAGEMENT|BOOK A BRANCH WALKTHROUGH|REQUEST A QUOTE|SEE THE MOBILE APP/);
+    if (!["/about", "/contact"].includes(route)) assert.equal([...html.matchAll(/<summary(?:\s|>)/g)].length, 4, `${route}: expected topic FAQs`);
+    if (!["/about", "/contact"].includes(route)) assert.match(html, /BOOK AN OFFLINE DEMO|SEE STOCK MANAGEMENT|BOOK A BRANCH WALKTHROUGH|REQUEST A QUOTE|SEE THE MOBILE APP/);
   }
   console.log(`PASS ${route}: unique metadata, canonical, main heading and crawlable topic links`);
 }
@@ -53,5 +55,5 @@ for (const [route, file, topic] of pages) {
 const sitemap = readBuild("sitemap.xml.body");
 const actual = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => normalized(match[1])).sort();
 const expected = pages.map(([route]) => normalized(`${site}${route}`)).sort();
-assert.deepEqual(actual, expected, "Sitemap must contain exactly the seven canonical marketing URLs");
-console.log("PASS sitemap: seven canonical marketing URLs");
+assert.deepEqual(actual, expected, "Sitemap must contain exactly the nine canonical public URLs");
+console.log("PASS sitemap: nine canonical public URLs");

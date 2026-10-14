@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { Pricing } from "@/components/Pricing";
+import { SetupChecklist } from "@/components/SetupChecklist";
 import { LOGO_SRC, SITE_URL } from "@/lib/site";
 import { SOLUTIONS, type SolutionPageData } from "@/lib/solutions";
 
@@ -56,7 +57,7 @@ export function SolutionPage({ page }: { page: SolutionPageData }) {
                 <h1 className="mt-6 font-display text-[clamp(36px,4.5vw,64px)] leading-[1.06]">{page.title}</h1>
                 <p className="mt-7 max-w-[760px] text-[15px] leading-[1.85] text-cream/85 sm:text-base">{page.intro}</p>
                 <div className="mt-9 flex flex-wrap items-center gap-5">
-                  <ContactButton className="inline-flex max-w-full items-center justify-center gap-2 bg-blue px-6 py-4 text-center text-xs font-bold tracking-[0.06em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
+                  <ContactButton intent={page.slug === "pricing" ? "quote" : "demo"} className="inline-flex max-w-full items-center justify-center gap-2 bg-blue px-6 py-4 text-center text-xs font-bold tracking-[0.06em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
                     {page.cta}<ArrowRight className="size-4 flex-none" aria-hidden="true" />
                   </ContactButton>
                   <Link href={page.slug === "pricing" ? "#pricing" : "/pricing"} prefetch={false} className="text-sm text-cream underline underline-offset-4 hover:text-white">
@@ -143,6 +144,8 @@ export function SolutionPage({ page }: { page: SolutionPageData }) {
           </Container>
         </section>
 
+        {page.slug === "pricing" && <SetupChecklist />}
+
         <section className="border-t border-navy/15 px-6 py-16 sm:px-8">
           <Container>
             <h2 className="font-display text-[28px] leading-[1.2]">Explore the rest of your setup.</h2>
@@ -162,7 +165,7 @@ export function SolutionPage({ page }: { page: SolutionPageData }) {
           <Container size="xs" className="relative">
             <h2 className="font-display text-[clamp(30px,4vw,48px)] leading-[1.12]">See this workflow in your shop.</h2>
             <p className="mx-auto mt-5 max-w-[600px] text-[15px] leading-[1.8] text-white/90">Talk to the Blue Ledger team about your setup and arrange a walkthrough with the tasks your staff use every day.</p>
-            <ContactButton className="mt-8 inline-flex max-w-full items-center justify-center gap-2 bg-navy px-7 py-4 text-xs font-bold tracking-[0.06em] text-cream shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-navy-deep">{page.cta}<ArrowRight className="size-4 flex-none" aria-hidden="true" /></ContactButton>
+            <ContactButton intent={page.slug === "pricing" ? "quote" : "demo"} className="mt-8 inline-flex max-w-full items-center justify-center gap-2 bg-navy px-7 py-4 text-xs font-bold tracking-[0.06em] text-cream shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-navy-deep">{page.cta}<ArrowRight className="size-4 flex-none" aria-hidden="true" /></ContactButton>
           </Container>
         </section>
       </main>

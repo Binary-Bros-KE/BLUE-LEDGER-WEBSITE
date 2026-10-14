@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "./Container";
 import { DashedPill } from "./DashedPill";
-import { PlaceholderImage } from "./PlaceholderImage";
+import { ScreenshotFigure } from "./ScreenshotFigure";
 
 type Row = {
   tag: string;
@@ -13,6 +13,7 @@ type Row = {
   imageSrc: string;
   imageAlt: string;
   imageLabel: string;
+  caption: string;
   imageBg: "white" | "navy";
   imageOnRight: boolean;
 };
@@ -28,6 +29,7 @@ function buildRows(sources: { receipts: string; inventory: string; reports: stri
       imageSrc: sources.receipts,
       imageAlt: "Blue Ledger receipts screen — searchable sales history with statuses and reprint",
       imageLabel: "Receipts screenshot (receipts.png)",
+      caption: "Find receipts, track returns and reprint sales from one searchable history.",
       imageBg: "white",
       imageOnRight: true,
     },
@@ -40,6 +42,7 @@ function buildRows(sources: { receipts: string; inventory: string; reports: stri
       imageSrc: sources.inventory,
       imageAlt: "Blue Ledger inventory — main store allocation across storefronts with low stock alerts",
       imageLabel: "Inventory screenshot (inventory.png)",
+      caption: "Compare main-store allocation with stock at each selling location.",
       imageBg: "white",
       imageOnRight: false,
     },
@@ -52,6 +55,7 @@ function buildRows(sources: { receipts: string; inventory: string; reports: stri
       imageSrc: sources.reports,
       imageAlt: "Blue Ledger sales report — daily, weekly, monthly and yearly analytics",
       imageLabel: "Sales report screenshot (sales_report.png)",
+      caption: "Choose a report period and review revenue, expenses and profit together.",
       imageBg: "white",
       imageOnRight: true,
     },
@@ -81,14 +85,14 @@ function TourRow({ row }: { row: Row }) {
           row.imageBg === "navy" ? "bg-navy" : "bg-white"
         }`}
       >
-        <PlaceholderImage
+        <ScreenshotFigure
           src={row.imageSrc}
           alt={row.imageAlt}
           width={1366}
           height={768}
-          label={row.imageLabel}
+          caption={row.caption}
           sizes="(min-width: 1024px) 520px, (min-width: 640px) calc(100vw - 66px), calc(100vw - 50px)"
-          className="h-auto w-full"
+          className="p-3"
         />
       </div>
     </div>

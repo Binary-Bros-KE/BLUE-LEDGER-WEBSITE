@@ -103,10 +103,10 @@ export default function FeaturesPage() {
               person replies fast.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <ContactButton className="inline-flex items-center gap-2.5 bg-blue px-9 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
+              <ContactButton intent="demo" className="inline-flex items-center gap-2.5 bg-blue px-9 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
                 TALK TO US
               </ContactButton>
-              <ContactButton className="border-[1.5px] border-navy px-9 py-4 text-sm font-bold tracking-[0.1em] text-navy transition hover:bg-navy hover:text-cream">
+              <ContactButton intent="demo" className="border-[1.5px] border-navy px-9 py-4 text-sm font-bold tracking-[0.1em] text-navy transition hover:bg-navy hover:text-cream">
                 BOOK A DEMO
               </ContactButton>
             </div>

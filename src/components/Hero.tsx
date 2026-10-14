@@ -3,6 +3,7 @@ import { ContactButton } from "./ContactModal";
 import { Container } from "./Container";
 import { DashedPill } from "./DashedPill";
 import { PlaceholderImage } from "./PlaceholderImage";
+import { ScreenshotFigure } from "./ScreenshotFigure";
 
 export function Hero({
   heroImageSrc,
@@ -38,21 +39,23 @@ export function Hero({
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <ContactButton className="inline-flex items-center gap-2.5 bg-blue px-8 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
+              <ContactButton intent="trial" className="inline-flex items-center gap-2.5 bg-blue px-8 py-4 text-sm font-extrabold tracking-[0.1em] text-white shadow-[4px_4px_0_var(--color-gold)] transition hover:bg-blue-press">
                 <Play className="size-4" aria-hidden="true" />
-                START FREE TRIAL
+                ARRANGE FREE TRIAL
               </ContactButton>
               <a
-                href="#tour"
+                href="#demo"
                 className="border-[1.5px] border-cream/50 px-8 py-4 text-sm font-bold tracking-[0.1em] text-cream transition hover:border-cream hover:bg-cream/8"
               >
                 SEE IT IN ACTION
               </a>
             </div>
 
+            <p className="mt-5 max-w-[480px] text-[13px] leading-relaxed text-cream/80">Tell us about your shop by WhatsApp or email. Our team helps arrange your 30-day trial and setup.</p>
+
             <div className="mt-12 mb-14 flex flex-wrap gap-6 text-xs tracking-[0.08em] text-cream/60 md:mb-0">
               <span>NO CARD REQUIRED</span>
-              <span>SET UP IN 10 MINUTES</span>
+              <span>TEAM-ASSISTED SETUP</span>
             </div>
           </div>
 
@@ -80,14 +83,15 @@ export function Hero({
             <span className="size-2.5 rounded-full bg-green-lt" />
             <span className="ml-2.5 text-[11px] tracking-[0.12em] text-cream/50">BLUE LEDGER POS &mdash; COMMAND CENTER</span>
           </div>
-          <PlaceholderImage
+          <ScreenshotFigure
             src={heroImageSrc}
             alt="Blue Ledger POS dashboard — Command Center with today's sales, checkout and cloud sync status"
             width={1357}
             height={768}
-            label="Dashboard screenshot (dashboard.png)"
+            caption="Review daily sales and shop activity from the Command Center."
             sizes="(min-width: 1100px) 1034px, (min-width: 640px) calc(100vw - 66px), calc(100vw - 50px)"
-            className="h-auto w-full"
+            dark
+            className="p-3 sm:p-4"
           />
         </div>
       </Container>

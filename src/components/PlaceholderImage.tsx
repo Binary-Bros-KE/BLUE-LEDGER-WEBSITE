@@ -17,6 +17,8 @@ export function PlaceholderImage({
   sizes,
   loading,
   fetchPriority,
+  placeholder,
+  style,
 }: {
   src: string;
   alt: string;
@@ -27,6 +29,8 @@ export function PlaceholderImage({
   sizes?: string;
   loading?: ImageProps["loading"];
   fetchPriority?: ImageProps["fetchPriority"];
+  placeholder?: ImageProps["placeholder"];
+  style?: ImageProps["style"];
 }) {
   if (src) {
     const asset = IMAGE_ASSETS[src];
@@ -39,6 +43,8 @@ export function PlaceholderImage({
         sizes={sizes ?? `${width}px`}
         loading={loading}
         fetchPriority={fetchPriority}
+        placeholder={asset ? placeholder : undefined}
+        style={style}
         className={className}
       />
     );

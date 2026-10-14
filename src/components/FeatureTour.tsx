@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { FEATURE_GROUPS, type FeatureGroup } from "@/lib/features";
 import { Container } from "./Container";
 import { DashedPill } from "./DashedPill";
-import { PlaceholderImage } from "./PlaceholderImage";
+import { ScreenshotFigure } from "./ScreenshotFigure";
 
 const TOPIC_LINKS: Record<string, { href: string; label: string }> = {
   inventory: { href: "/inventory-management", label: "Explore inventory management" },
@@ -47,14 +47,14 @@ function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) 
             portrait ? "max-w-[240px]" : "max-w-[360px]"
           }`}
         >
-          <PlaceholderImage
+          <ScreenshotFigure
             src={group.image.src}
             alt={group.image.alt}
             width={imgWidth}
             height={imgHeight}
-            label={group.image.label}
+            caption={group.tagline}
             sizes={portrait ? "240px" : "(min-width: 410px) 360px, calc(100vw - 50px)"}
-            className="h-auto w-full"
+            className="p-2"
           />
         </div>
       </div>

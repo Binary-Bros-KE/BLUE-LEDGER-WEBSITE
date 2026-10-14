@@ -3,9 +3,9 @@ import { Container } from "./Container";
 import { StampCircle } from "./StampCircle";
 
 const STATS = [
-  { value: "0", label: "SALES LOST OFFLINE", color: "text-gold" },
-  { value: "100%", label: "SYNCED WHEN BACK", color: "text-green-lt" },
-  { value: "<1s", label: "LOCAL CHECKOUT", color: "text-cream" },
+  { value: "LOCAL", label: "COUNTER RECORDS", color: "text-gold" },
+  { value: "QUEUED", label: "WHILE DISCONNECTED", color: "text-green-lt" },
+  { value: "SYNC", label: "AFTER RECONNECTING", color: "text-cream" },
 ] as const;
 
 export function OfflineManifesto() {
@@ -25,8 +25,8 @@ export function OfflineManifesto() {
         </h2>
 
         <p className="mx-auto mt-7 max-w-[640px] text-base leading-[1.8] text-cream/80">
-          Most POS systems are websites in disguise — no connection, no checkout. Blue Ledger is software on your machine with a ledger
-          of its own. Queue of pending syncs: visible. Failed syncs: retried. Sales lost to a blackout: zero.
+          Blue Ledger runs on your Windows counter with a ledger
+          of its own. Queue of pending syncs: visible. Failed syncs: retried. The counter must stay powered; remote views catch up after syncing.
         </p>
 
         <Link href="/offline-pos" prefetch={false} className="mt-7 inline-block text-sm font-bold text-cream underline underline-offset-4 hover:text-white">Explore offline checkout and cloud sync &rarr;</Link>

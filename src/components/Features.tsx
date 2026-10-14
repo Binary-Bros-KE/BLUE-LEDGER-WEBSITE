@@ -18,8 +18,8 @@ const CARDS: Card[] = [
     label: "OFFLINE-FIRST CORE",
     href: "/offline-pos",
     linkLabel: "Explore offline checkout",
-    title: "Power cut? Network down? Keep selling.",
-    body: "Every sale writes to a local SQLite ledger on your machine instantly. No spinner, no timeout, no lost sale — ever.",
+    title: "Network down? Keep selling.",
+    body: "Sales are recorded in a local ledger on your powered Windows counter, with pending changes queued for cloud sync.",
     tone: "navy",
   },
   {

@@ -6,10 +6,12 @@ import {
   useContext,
   useEffect,
   useState,
+  useRef,
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from "react";
 import { ArrowUpRight, Mail, Phone, X } from "lucide-react";
+import { CONTACT_TITLES, emailHref, SALES_PHONE, SUPPORT_PHONE, whatsappHref, type ContactIntent } from "@/lib/contact";
 
 // ---------------------------------------------------------------------------
 // Contact channels. Every CTA on the site opens this modal instead of going
@@ -104,7 +106,7 @@ const CHANNELS: Channel[] = [
   },
 ];
 
-type ContactContextValue = { open: () => void };
+type ContactContextValue = { open: (intent?: ContactIntent) => void };
 
 const ContactContext = createContext<ContactContextValue | null>(null);
 
@@ -117,20 +119,17 @@ export function useContact(): ContactContextValue {
 }
 
 export function ContactProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const open = useCallback(() => setIsOpen(true), []);
-  const close = useCallback(() => setIsOpen(false), []);
+  const [intent, setIntent] = useState<ContactIntent | null>(null);
+  const isOpen = intent !== null;
+  const open = useCallback((nextIntent: ContactIntent = "general") => setIntent(nextIntent), []);
+  const close = useCallback(() => setIntent(null), []);
 
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKey);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
-      document.removeEventListener("keydown", onKey);
+
       document.body.style.overflow = previousOverflow;
     };
   }, [isOpen, close]);
@@ -138,7 +137,7 @@ export function ContactProvider({ children }: { children: ReactNode }) {
   return (
     <ContactContext.Provider value={{ open }}>
       {children}
-      {isOpen ? <ContactDialog onClose={close} /> : <ContactFab onClick={open} />}
+      {intent ? <ContactDialog intent={intent} onClose={close} /> : <ContactFab onClick={() => open("general")} />}
     </ContactContext.Provider>
   );
 }
@@ -157,69 +156,45 @@ function ContactFab({ onClick }: { onClick: () => void }) {
   );
 }
 
-function ContactDialog({ onClose }: { onClose: () => void }) {
+function ContactDialog({ intent, onClose }: { intent: ContactIntent; onClose: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const element = dialog.current!;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    element.showModal();
+    closeButton.current?.focus();
+    return () => { if (element.open) element.close(); previousFocus?.focus(); };
+  }, []);
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-navy/70 p-4 backdrop-blur-sm sm:items-center"
-      role="presentation"
-      onClick={onClose}
-    >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-modal-title"
-        className="relative my-8 w-full max-w-[440px] border-[1.5px] border-navy bg-cream p-7 shadow-[8px_8px_0_var(--color-gold)] sm:p-9"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="text-[12px] font-bold tracking-[0.16em] text-green">GET IN TOUCH</div>
-            <h2 id="contact-modal-title" className="mt-2 font-display text-[28px] leading-[1.1]">
-              Contact Us
-            </h2>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="-mt-1 -mr-1 grid size-9 flex-none place-items-center border border-navy/20 text-navy transition hover:bg-navy hover:text-cream"
-          >
-            <X className="size-5" aria-hidden="true" />
-          </button>
+    <dialog ref={dialog} onClose={onClose} onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }} aria-labelledby="contact-modal-title" className="m-auto max-h-[90dvh] w-[calc(100%_-_32px)] max-w-[480px] overflow-auto border-[1.5px] border-navy bg-cream p-7 text-navy shadow-[8px_8px_0_var(--color-gold)] backdrop:bg-navy/75 sm:p-9">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="text-[12px] font-bold tracking-[0.12em] text-green">BLUE LEDGER TEAM</div>
+          <h2 id="contact-modal-title" className="mt-2 font-display text-[26px] leading-[1.15]">{CONTACT_TITLES[intent]}</h2>
         </div>
-
-        <ul className="mt-6 border-t border-dashed border-navy/25">
-          {CHANNELS.map((channel) => (
+        <button ref={closeButton} type="button" onClick={() => dialog.current?.close()} aria-label="Close contact dialog" className="grid size-9 flex-none place-items-center border border-navy/20 hover:bg-navy hover:text-cream"><X className="size-5" aria-hidden="true" /></button>
+      </div>
+      <p className="mt-5 text-[14px] leading-[1.8] text-navy/80">
+        {intent === "trial" ? "Your 30-day trial is arranged with our team. Choose WhatsApp or email, tell us about your shop and devices, and agree the setup steps together. No card is required." : intent === "quote" ? "Share your locations, counters and existing equipment. Ask for software, hardware, onboarding and support to be itemised in your quote." : intent === "demo" ? "Choose WhatsApp or email to arrange a walkthrough of the sales, stock and receipt tasks your shop needs." : "Use the sales or support channel that matches your question. Choosing a channel opens the service; you decide when to send your message."}
+      </p>
+      <ul className="mt-6 border-t border-dashed border-navy/25">
+        {CHANNELS.map(channel => {
+          const href = channel.key === "wa-sales" ? whatsappHref(SALES_PHONE, intent) : channel.key === "wa-support" ? whatsappHref(SUPPORT_PHONE, "support") : channel.key === "email" ? emailHref(intent) : channel.href;
+          return (
             <li key={channel.key} className="border-b border-dashed border-navy/25">
-              <a
-                href={channel.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 py-3.5"
-              >
-                <span
-                  className="grid size-11 flex-none place-items-center border border-navy/20 bg-white transition group-hover:border-navy"
-                  style={{ color: channel.color }}
-                >
-                  {channel.icon}
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-[14px] font-bold tracking-[0.02em] text-navy">{channel.label}</span>
-                  <span className="block truncate text-[12.5px] text-navy/60">{channel.sub}</span>
-                </span>
-                <ArrowUpRight
-                  className="ml-auto size-4 flex-none text-navy/30 transition group-hover:translate-x-0.5 group-hover:text-navy"
-                  aria-hidden="true"
-                />
+              <a href={href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 py-3.5">
+                <span className="grid size-10 flex-none place-items-center border border-navy/20 bg-white" style={{ color: channel.color }}>{channel.icon}</span>
+                <span className="min-w-0"><span className="block text-[14px] font-bold">{channel.label}</span><span className="block break-words text-[12px] leading-relaxed text-navy/75">{channel.sub}</span></span>
+                <ArrowUpRight className="ml-auto size-4 flex-none text-navy/60" aria-hidden="true" />
               </a>
             </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+          );
+        })}
+      </ul>
+    </dialog>
   );
 }
-
 /**
  * Drop-in CTA button — renders a <button> that opens the Contact modal.
  * Style it exactly like the anchor it replaces by passing `className`.
@@ -228,8 +203,10 @@ export function ContactButton({
   className,
   children,
   onClick,
+  intent = "general",
 }: {
   className?: string;
+  intent?: ContactIntent;
   children: ReactNode;
   /** Runs before the modal opens — e.g. to close an open mobile menu. */
   onClick?: () => void;
@@ -240,7 +217,7 @@ export function ContactButton({
       type="button"
       onClick={() => {
         onClick?.();
-        open();
+        open(intent);
       }}
       className={className}
     >

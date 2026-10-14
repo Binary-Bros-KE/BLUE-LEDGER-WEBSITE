@@ -36,7 +36,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
               {link.label}
             </Link>
           ))}
-          <ContactButton className="bg-navy px-5 py-2.5 text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)] transition hover:bg-blue hover:text-white">
+          <ContactButton intent="trial" className="bg-navy px-5 py-2.5 text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)] transition hover:bg-blue hover:text-white">
             GET STARTED &rarr;
           </ContactButton>
         </nav>
@@ -67,6 +67,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
               </Link>
             ))}
             <ContactButton
+              intent="trial"
               onClick={() => setOpen(false)}
               className="mt-2 bg-navy px-5 py-3 text-center text-xs font-bold tracking-[0.1em] text-cream shadow-[3px_3px_0_var(--color-gold)]"
             >

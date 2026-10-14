@@ -1,3 +1,4 @@
+import { CustomerFeedback } from "@/components/CustomerFeedback";
 import type { Metadata } from "next";
 import { Faq } from "@/components/Faq";
 import { Features } from "@/components/Features";
@@ -10,6 +11,7 @@ import { Nav } from "@/components/Nav";
 import { OfflineManifesto } from "@/components/OfflineManifesto";
 import { Pricing } from "@/components/Pricing";
 import { ProductTour } from "@/components/ProductTour";
+import { ProductDemo } from "@/components/ProductDemo";
 import {
   HERO_IMAGE_SRC,
   HERO_PRODUCT_IMAGE_SRC,
@@ -56,6 +58,7 @@ export default function Home() {
         <Hero heroImageSrc={HERO_IMAGE_SRC} productImageSrc={HERO_PRODUCT_IMAGE_SRC} />
         <MarqueeStrip />
         <Features />
+        <ProductDemo />
         <ProductTour
           receiptsImageSrc={RECEIPTS_IMAGE_SRC}
           inventoryImageSrc={INVENTORY_IMAGE_SRC}
@@ -63,6 +66,7 @@ export default function Home() {
         />
         <MobileApp imageSrc={MOBILE_APP_IMAGE_SRC} />
         <OfflineManifesto />
+        <CustomerFeedback />
         <Pricing />
         <Faq />
         <FinalCta logoSrc={LOGO_SRC} />
