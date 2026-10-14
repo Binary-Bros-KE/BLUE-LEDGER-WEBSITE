@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Faq } from "@/components/Faq";
 import { Features } from "@/components/Features";
 import { FinalCta } from "@/components/FinalCta";
@@ -18,6 +19,10 @@ import {
   RECEIPTS_IMAGE_SRC,
   REPORTS_IMAGE_SRC,
 } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",

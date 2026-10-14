@@ -4,6 +4,8 @@
 // image. Imported by both the home page and the dedicated /features page.
 // ---------------------------------------------------------------------------
 
+export const SITE_URL = "https://blueledgerpos.app";
+
 export const LOGO_SRC = "/BLUE_LEDGER.png"; // BLUE_LEDGER.png, transparent background
 export const HERO_PRODUCT_IMAGE_SRC = "/POS.png"; // hardware render (monitor + printer + scanner + phone), transparent background
 export const HERO_IMAGE_SRC = "/screenshots/dashboard.png"; // Command Center dashboard screenshot

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Archivo_Black, JetBrains_Mono } from "next/font/google";
 import { ContactProvider } from "@/components/ContactModal";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-// TODO: replace with the real production domain once it's registered/deployed.
-const SITE_URL = "https://www.blueledger.app";
 
 const archivoBlack = Archivo_Black({
   variable: "--font-archivo-black",
@@ -51,9 +50,8 @@ export const metadata: Metadata = {
     title: "Blue Ledger POS — Track. Sell. Grow.",
     description: "The offline-first point of sale that keeps selling when the internet doesn't.",
   },
-  // TODO: drop the real icon at /public/favicon.png (source: BLUE_LEDGER.png) once available.
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
   },
   robots: {
     index: true,

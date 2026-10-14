@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ContactButton } from "./ContactModal";
@@ -59,7 +60,7 @@ export function Footer({ logoSrc }: { logoSrc: string }) {
       </Container>
 
       <Container className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-cream/25 pt-5 text-[11px] tracking-[0.1em]">
-        <span>&copy; {year} BLUE LEDGER &middot; BLUELEDGER.APP</span>
+        <span>&copy; {year} BLUE LEDGER &middot; {new URL(SITE_URL).hostname.toUpperCase()}</span>
         <span className="text-green-lt">&bull; LOCAL MODE &middot; SQLITE READY &middot; CLOUD SYNC STAGED</span>
       </Container>
     </footer>
