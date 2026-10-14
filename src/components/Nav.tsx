@@ -10,8 +10,8 @@ import { PlaceholderImage } from "./PlaceholderImage";
 const NAV_LINKS = [
   { href: "/#features", label: "FEATURES" },
   { href: "/features", label: "PRODUCT TOUR" },
-  { href: "/#offline", label: "OFFLINE-FIRST" },
-  { href: "/#pricing", label: "PRICING" },
+  { href: "/offline-pos", label: "OFFLINE POS" },
+  { href: "/pricing", label: "PRICING" },
 ];
 
 export function Nav({ logoSrc }: { logoSrc: string }) {
@@ -20,7 +20,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
   return (
     <div className="sticky top-0 z-50 border-b border-navy/15 bg-cream/92 backdrop-blur-sm">
       <Container className="flex items-center justify-between gap-6 px-6 py-3.5 sm:px-8">
-        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+        <Link href="/" prefetch={false} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <PlaceholderImage src={logoSrc} alt="Blue Ledger logo" width={36} height={36} label="Logo" className="size-9" />
           <span className="text-[15px] font-extrabold tracking-[0.14em]">BLUE LEDGER</span>
         </Link>
@@ -30,7 +30,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
             <Link
               key={link.href}
               href={link.href}
-              prefetch={link.href.includes("#") ? false : undefined}
+              prefetch={false}
               className="text-[13px] font-medium tracking-[0.06em] text-navy transition hover:text-blue"
             >
               {link.label}
@@ -59,7 +59,7 @@ export function Nav({ logoSrc }: { logoSrc: string }) {
               <Link
                 key={link.href}
                 href={link.href}
-                prefetch={link.href.includes("#") ? false : undefined}
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className="py-2.5 text-sm font-semibold tracking-[0.04em] text-navy"
               >

@@ -1,8 +1,15 @@
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { FEATURE_GROUPS, type FeatureGroup } from "@/lib/features";
 import { Container } from "./Container";
 import { DashedPill } from "./DashedPill";
 import { PlaceholderImage } from "./PlaceholderImage";
+
+const TOPIC_LINKS: Record<string, { href: string; label: string }> = {
+  inventory: { href: "/inventory-management", label: "Explore inventory management" },
+  "multi-branch": { href: "/multi-branch-pos", label: "Explore multi-branch POS" },
+  "mobile-app": { href: "/mobile-pos", label: "Explore mobile POS" },
+};
 
 function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) {
   const Icon = group.icon;
@@ -31,6 +38,9 @@ function FeatureBlock({ group, index }: { group: FeatureGroup; index: number }) 
         </DashedPill>
         <h3 className="mt-5 font-display text-[26px] leading-[1.15] sm:text-[32px]">{group.title}</h3>
         <p className="mt-4 text-[15px] leading-[1.8] text-navy/75">{group.tagline}</p>
+        {TOPIC_LINKS[group.id] && (
+          <Link href={TOPIC_LINKS[group.id].href} prefetch={false} className="mt-4 inline-block text-sm font-bold text-blue underline underline-offset-4">{TOPIC_LINKS[group.id].label} &rarr;</Link>
+        )}
 
         <div
           className={`mt-6 w-full border border-navy/20 bg-white ${shadow} ${

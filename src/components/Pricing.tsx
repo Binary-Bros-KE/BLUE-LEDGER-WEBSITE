@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { ContactButton } from "./ContactModal";
 import { Container } from "./Container";
@@ -55,7 +56,7 @@ function PriceLine({ tone }: { tone: "dark" | "light" }) {
   );
 }
 
-export function Pricing() {
+export function Pricing({ showDetailsLink = true }: { showDetailsLink?: boolean }) {
   return (
     <div id="pricing" className="px-6 py-20 sm:px-8 md:py-24">
       <Container>
@@ -73,6 +74,10 @@ export function Pricing() {
             Talk to us for a quote that fits your setup &mdash; no rigid tiers, no surprises on the bill.
           </p>
         </div>
+
+        {showDetailsLink && (
+          <Link href="/pricing" prefetch={false} className="mt-6 inline-block text-sm font-bold text-blue underline underline-offset-4">Compare packages and plan your setup</Link>
+        )}
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
           {/* DUKA */}

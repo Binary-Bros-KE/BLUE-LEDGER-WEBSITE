@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "./Container";
 import { StampCircle } from "./StampCircle";
 
@@ -27,6 +28,8 @@ export function OfflineManifesto() {
           Most POS systems are websites in disguise — no connection, no checkout. Blue Ledger is software on your machine with a ledger
           of its own. Queue of pending syncs: visible. Failed syncs: retried. Sales lost to a blackout: zero.
         </p>
+
+        <Link href="/offline-pos" prefetch={false} className="mt-7 inline-block text-sm font-bold text-cream underline underline-offset-4 hover:text-white">Explore offline checkout and cloud sync &rarr;</Link>
 
         <div className="mt-12 flex flex-wrap justify-center gap-5">
           {STATS.map((stat) => (

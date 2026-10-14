@@ -6,9 +6,12 @@ import { Container } from "./Container";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const PRODUCT_LINKS = [
-  { href: "/features", label: "Features" },
-  { href: "/#offline", label: "Offline-first" },
-  { href: "/#pricing", label: "Pricing" },
+  { href: "/features", label: "Product tour" },
+  { href: "/offline-pos", label: "Offline POS" },
+  { href: "/inventory-management", label: "Inventory management" },
+  { href: "/multi-branch-pos", label: "Multi-branch POS" },
+  { href: "/mobile-pos", label: "Mobile POS" },
+  { href: "/pricing", label: "Pricing & setup" },
 ];
 
 const COMPANY_LINKS: { href: string; label: string }[] = [];
@@ -28,7 +31,7 @@ function FooterColumn({
     <div className="flex flex-col">
       <span className="text-[11px] font-bold tracking-[0.16em] text-gold">{heading}</span>
       {links.map((link) => (
-        <Link key={link.label} href={link.href} prefetch={link.href.includes("#") ? false : undefined} className={FOOTER_LINK_CLASS}>
+        <Link key={link.label} href={link.href} prefetch={false} className={FOOTER_LINK_CLASS}>
           {link.label}
         </Link>
       ))}

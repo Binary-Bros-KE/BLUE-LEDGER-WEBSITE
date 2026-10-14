@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Check, Smartphone } from "lucide-react";
 import { Container } from "./Container";
 import { PlaceholderImage } from "./PlaceholderImage";
@@ -51,6 +52,8 @@ export function MobileApp({ imageSrc }: { imageSrc: string }) {
             The mobile app is the same Blue Ledger, sized for a phone. Owners keep an eye on every branch in
             real time; staff carry a full point of sale around the shop floor.
           </p>
+
+          <Link href="/mobile-pos" prefetch={false} className="mt-6 inline-block text-sm font-bold text-cream underline underline-offset-4 hover:text-white">Explore the mobile POS app &rarr;</Link>
 
           <ul className="mt-8 flex flex-col gap-5 border-t border-dashed border-cream/25 pt-6">
             {POINTS.map((point) => (

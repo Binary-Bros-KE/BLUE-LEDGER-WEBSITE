@@ -33,7 +33,7 @@ export function Hero({
             </h1>
 
             <p className="mt-8 max-w-[480px] text-base leading-[1.7] text-cream/85 sm:text-[17px]">
-              The point of sale that never asks for Wi-Fi. Blue Ledger runs on your counter &mdash; sales, inventory, receipts and your whole
+              Blue Ledger is a POS system for shops in Kenya. It runs on your counter &mdash; sales, inventory, receipts and your whole
               team &mdash; then syncs to the cloud when the internet comes back.
             </p>
 

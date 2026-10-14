@@ -11,9 +11,8 @@ import { Pricing } from "@/components/Pricing";
 import { FEATURE_GROUPS } from "@/lib/features";
 import { LOGO_SRC } from "@/lib/site";
 
-const PAGE_TITLE = "Features — Offline POS with Mobile App, Multi-Branch Inventory & Reports";
-const PAGE_DESCRIPTION =
-  "Explore every Blue Ledger feature: an offline point of sale, a mobile app for remote shop visibility and selling on the go, multi-branch inventory with main store allocation and stock transfers, e-receipts on WhatsApp and email, invoices, quotations and delivery notes, goods received tracking, requests and approvals, roles and permissions, expenses, salary management, sales, inventory, product and tax reports, and data migration from your old POS. Not integrated with KRA eTIMS — your sales are never shared with KRA.";
+const PAGE_TITLE = "POS Features & Product Tour";
+const PAGE_DESCRIPTION = "Explore Blue Ledger checkout, stock transfers, staff permissions, receipts and reports for Kenyan retail and wholesale businesses. Book a product walkthrough.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

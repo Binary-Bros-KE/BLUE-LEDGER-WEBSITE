@@ -25,11 +25,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Blue Ledger POS — Track. Sell. Grow. | Offline-first Point of Sale for Kenyan businesses",
+    default: "POS System in Kenya for Retail & Wholesale | Blue Ledger",
     template: "%s | Blue Ledger",
   },
   description:
-    "Blue Ledger is an offline-first point of sale system. Sell without internet, sync to the cloud when you're back online. Inventory across storefronts, receipts, approvals, team PINs and reports — built for businesses in Kenya.",
+    "Blue Ledger POS helps Kenyan shops manage sales, stock, receipts and staff. Sell offline on Windows and sync branch data when connected.",
   keywords: [
     "POS system Kenya",
     "point of sale",
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Blue Ledger",
-    title: "Blue Ledger POS — Track. Sell. Grow.",
+    title: "POS System in Kenya | Blue Ledger",
     description: "The offline-first point of sale that keeps selling when the internet doesn't.",
     // TODO: add /public/images/og-image.png (1200x630) and reference it here once available.
     images: [],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blue Ledger POS — Track. Sell. Grow.",
+    title: "POS System in Kenya | Blue Ledger",
     description: "The offline-first point of sale that keeps selling when the internet doesn't.",
   },
   icons: {
