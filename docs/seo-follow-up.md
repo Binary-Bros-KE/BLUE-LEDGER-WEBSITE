@@ -2,7 +2,8 @@
 
 ## Owner to-do
 - [ ] Record a short real product demonstration. Deferred at the owner's request on 14 October 2026. Supply the video, matching transcript and WebVTT captions; connect them in `src/lib/demo.ts`. Keep the labelled screenshot walkthrough until then.
-- [ ] Obtain approval of the five published customer paraphrases; develop one case study with a recorded baseline, outcome, period and measurement method. Do not turn paraphrases into direct quotes or numeric ratings.
+- [x] Obtain approval of the five published customer comments. Customer-approved quotes published 26 October 2026.
+- [ ] Develop one case study with a recorded baseline, outcome, period and measurement method. Do not add numeric ratings.
 - [ ] Confirm hosting providers/access, retention/deletion procedures and complete data categories for a reviewed privacy notice.
 
 ## Published in phase six
