@@ -1,10 +1,10 @@
 export type ContactIntent = "general" | "trial" | "demo" | "quote" | "support";
 
 export const CONTACT_EMAIL = "info@blueledgerpos.com";
-export const SALES_PHONE = "254791880412";
-export const SALES_PHONE_DISPLAY = "0791 880 412";
-export const SUPPORT_PHONE = "254742593840";
-export const SUPPORT_PHONE_DISPLAY = "0742 593 840";
+export const SALES_PHONE = "254742503840";
+export const SALES_PHONE_DISPLAY = "0742 503 840";
+export const SUPPORT_PHONE = "254792272271";
+export const SUPPORT_PHONE_DISPLAY = "0792 272 271";
 
 export const CONTACT_MESSAGES: Record<ContactIntent, string> = {
   general: "Hi, I'm interested in Blue Ledger POS.",

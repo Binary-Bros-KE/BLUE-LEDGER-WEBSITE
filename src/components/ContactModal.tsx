@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { ArrowUpRight, Mail, Phone, X } from "lucide-react";
-import { CONTACT_TITLES, emailHref, SALES_PHONE, SUPPORT_PHONE, whatsappHref, type ContactIntent } from "@/lib/contact";
+import { CONTACT_TITLES, emailHref, SALES_PHONE, SALES_PHONE_DISPLAY, SUPPORT_PHONE, SUPPORT_PHONE_DISPLAY, whatsappHref, type ContactIntent } from "@/lib/contact";
 
 // ---------------------------------------------------------------------------
 // Contact channels. Every CTA on the site opens this modal instead of going
@@ -67,16 +67,16 @@ const CHANNELS: Channel[] = [
   {
     key: "wa-sales",
     label: "WhatsApp",
-    sub: "Sales Consultant · 0791 880 412",
-    href: waHref("254791880412"),
+    sub: `Sales Consultant · ${SALES_PHONE_DISPLAY}`,
+    href: waHref(SALES_PHONE),
     color: "#25D366",
     icon: <WhatsAppIcon className={ICON_CLASS} />,
   },
   {
     key: "wa-support",
     label: "WhatsApp",
-    sub: "BL Support · 0742 593 840",
-    href: waHref("254742593840"),
+    sub: `BL Support · ${SUPPORT_PHONE_DISPLAY}`,
+    href: waHref(SUPPORT_PHONE),
     color: "#25D366",
     icon: <WhatsAppIcon className={ICON_CLASS} />,
   },
